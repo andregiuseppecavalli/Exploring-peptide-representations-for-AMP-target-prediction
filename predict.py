@@ -96,7 +96,7 @@ def featurize_aa_and_dipeptides_fast(df):
     return pd.concat([aa_df, di_df], axis=1)
 
 def main():
-    # 1. Setup argparse for helper functionality and command line inputs
+    # Setup argparse for helper functionality and command line inputs
     parser = argparse.ArgumentParser(
         description="Process a FASTA or CSV file containing protein sequences into a standardized pandas DataFrame."
     )
@@ -122,13 +122,13 @@ def main():
     args = parser.parse_args()
     input_file = args.input
     current_path = os.getcwd()
+    ad_threshold = 0.41
 
-    # Check if file exists
     if not os.path.exists(input_file):
         print(f"Error: The file '{input_file}' does not exist.")
         sys.exit(1)
 
-    # 2. Determine file type and process accordingly
+    # Determine file type and process accordingly
     file_ext = os.path.splitext(input_file)[1].lower()
 
     if file_ext in ['.csv']:
@@ -178,15 +178,15 @@ def main():
         df['pred class'] = df['pred label'].map({0: 'MDP', 1: 'DNA', 2:'CP'})
         probas = model.predict_proba(X)
         df['MDP proba'] = np.round(probas[:, 0], 3)
-        df['DNA/RNA proba'] = np.round(probas[:, 1], 3)
+        df['DNA proba'] = np.round(probas[:, 1], 3)
         df['CP proba'] = np.round(probas[:, -1], 3)
     
     nn = joblib.load(os.path.join(current_path, 'src', '1NN.joblib'))
     distances, _ = nn.kneighbors(X)
     distances = distances.flatten()
-    df['distance'] = distances
-    df['inside AD'] = distances < 0.41
-    # Optional: Save to a new CSV if the user requested it
+    df['distance'] = np.round(distances, 3)
+    df['inside AD'] = np.round(distances, 3) < ad_threshold
+    # Save to a new CSV if the user requested it
     if args.output:
         df.to_csv(args.output, index=False)
     else:
