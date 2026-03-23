@@ -19,12 +19,25 @@ To run the script, you will need Python 3 installed along with the following lib
 pip install pandas numpy tqdm joblib scikit-learn
 ```
 
-## Test
+## Usage
 
 Once installed, test the installation by executing:
 
 ```bash
 python predict.py -i example example.fasta
 ```
-This will create a CSV file named predictions.csv with the following columns:
+This will create a CSV file named `predictions.csv` with the following columns:
+* ID: peptide identifier
+* SEQUENCE: peptide sequence
+* pred label: predicted label (0-1-2 for ternary and 0-1 for binary model).
+* pred class: predicted class (MDP-DNA-CP for ternary and MDP-MPP for binary model).
+* pred proba: the corresponding predicted probabilities
+* distance: cosine distance from training dataset.
+* inside AD: whether the peptide is inside or outside the AD.
+
+To see all the flags run:
+```bash
+python predict.py -h
+```
+
 
