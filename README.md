@@ -17,3 +17,14 @@ To run the script, you will need Python 3 installed along with the following lib
 
 ```bash
 pip install pandas numpy tqdm joblib scikit-learn
+```
+
+## Test
+
+Once installed, test the installation by executing:
+
+```bash
+python predict.py -i example example.fasta
+```
+This will create a CSV file named predictions.csv with the following columns:
+
