@@ -24,7 +24,7 @@ pip install pandas numpy tqdm joblib scikit-learn
 Once installed, test the installation by executing:
 
 ```bash
-python predict.py -i example example.fasta
+python predict.py -i example/example.fasta
 ```
 This will create a CSV file named `predictions.csv` with the following columns:
 * ID: peptide identifier
