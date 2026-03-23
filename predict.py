@@ -114,11 +114,9 @@ def main():
     )
     
     parser.add_argument(
-        "-b", "--binary",
-        required=False,
-        default=False,
-        type=bool,
-        help='Write "True" to switch from ternary to binary model.'
+    "-b", "--binary",
+    action="store_true",
+    help="Include this flag to switch from ternary to binary model."
     )
 
     args = parser.parse_args()
