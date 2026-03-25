@@ -6,7 +6,7 @@ The tool extracts amino acid and dipeptide compositions from protein sequences a
 
 ## Features
 * **Two Classification Modes:**
-  * **Ternary Model (Default):** Classifies peptides into Membrane Disruptive (MDP), DNA/RNA targeting (DNA), or Cell Penetrating (CP).
+  * **Ternary Model (Default):** Classifies peptides into Membrane Disruptive (MDP), DNA/RNA targeting (DNA), or Cytoplasmic Protein (CP) targeting.
   * **Binary Model:** Classifies peptides strictly into Membrane Disruptive (MDP) or Membrane Penetrating Peptides (MPP).
 * **Input Flexibility:** Accepts standard `.fasta` files or `.csv` files containing `ID` and `SEQUENCE` columns.
 * **Applicability Domain (AD):** Flags whether a given sequence falls within the reliable prediction space of the models (distance < 0.41).
